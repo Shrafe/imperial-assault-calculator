@@ -184,7 +184,10 @@ export class App {
         //possibleRolls.showProb();
 
         let damageResults = possibleRolls.getEffectiveDamage(this.surgeAbilities, this.fixedAttackAbility, this.fixedDefenseAbility, this.range);
+	let conditionResults = possibleRolls.getConditionProbability(this.surgeAbilities, this.fixedAttackAbility, this.fixedDefenseAbility, this.range);
+	alert(conditionResults);
         //console.log(damageResults);
+		
 
         let minValue = 1;
         let maxValue = this._chartMaxDamage;

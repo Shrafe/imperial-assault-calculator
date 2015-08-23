@@ -125,6 +125,12 @@
                         click.delegate="$parent.addAttackProperty(surge, 'accuracy')">
                     +${surge.accuracy} A
                 </button>
+		<button class="btn btn-default surge-button"
+			data-toggle="tooltip"
+			title="Surge for Condition"
+			click.delegate="$parent.addAttackProperty(surge, 'condition')">
+		    +${surge.condition} Cond
+		</button>
                 <button class="btn btn-default button-cancel"
                         data-toggle="tooltip"
                         title="Remove Surge Ability"
