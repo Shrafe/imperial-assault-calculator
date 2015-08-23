@@ -126,7 +126,7 @@ export class PossibleRolls {
 
 	for (let prKey in this._possibleRolls){
 	    let currentRoll = this._possibleRolls[prKey];
-	    if (rollResult.miss){
+	    if (currentRoll.miss){
 		continue;
 	    }
 	    
@@ -151,14 +151,15 @@ export class PossibleRolls {
 		
 	    // damage is > 1 and we have an unspent surge. success. short circuit.
 	    if ((conditionAppliedResult.damage > 0) && (conditionAppliedResult.surge > 0)){	
-		conditionProbability += conditionAppliedResult.probability;
-		continue;
+		    conditionProbability += conditionAppliedResult.probability;
+		    continue;
 	    }
 	    // while we have unspent surges and surge abilities to use, and we don't yet do enough damage to apply our condition
 	    while ((conditionAppliedResult.surge > 1) && (surgeAbilitiesToUse.length > 0)){
-		var penetrateDefense: SurgeResult = undefined;	
+		var bestSurgeEffect: SurgeResult = undefined;	
 		
-		for (let surge of surgeAbilitiesToUse){
+        for (let surge of surgeAbilitiesToUse) {
+            let bestSurgeEffect: SurgeResult = undefined;
 		    let surgeEffect = this.calculateSurgeEffect(conditionAppliedResult, surge, needRange);
 		    if ((surgeEffect.remainingRange == 0) && 
 			((bestSurgeEffect === undefined) || 
@@ -190,13 +191,6 @@ export class PossibleRolls {
 	    }
 	}
 	return conditionProbability;
-    }
-
-    private updateConditionProbability(dictionary: { [key: boolean]: number }, key: boolean, probability: number) {
-	if (dictionary[key] === undefined){
-	    dictionary[key] = 0;
-        } 
-	dictionary[key] += probability;
     }
 
     private updateValue(dict: { [key: number]: number }, key: number, value: number) {

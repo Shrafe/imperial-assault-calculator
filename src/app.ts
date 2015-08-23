@@ -124,7 +124,8 @@ export class App {
             damage: 0,
             pierce: 0,
             accuracy: 0,
-            surge: 0
+            surge: 0,
+            condition: 0
         }
     }
 
